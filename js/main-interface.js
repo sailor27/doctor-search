@@ -10,18 +10,16 @@ $(document).ready(function() {
     getData(condition, function(response) {
     //connection success
       $('#output').append(`Successful API Connection. You did it! You searched for:  ${condition}. The search found ${response.data.length} results`);
-      // $('#output2').append(firstDoctor.profile.first_name);
+      let doctor1 = response.data[0].profile;
+      let doctor2 = response.data[1].profile;
+      // $('#output2').append(doctor1, doctor2);
+      let results = new Results(doctor1, doctor2);
+      console.log(results);
     },
     //connection failure
       function() {
       $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${condition} . Please try again.`);
     });
-    //
-    // console.log(getData());
-    // const newResults = new Results(response.data);
-    // console.log(newResult);
-
-
 
   });
 });
