@@ -1,24 +1,25 @@
 
-import { getData, Results } from './../js/scripts.js';
+import { getData } from './../js/scripts.js';
 
 $(document).ready(function() {
   $('#search').submit(function() {
     event.preventDefault();
-    let condition = $('#condition-search').val();
+    let search = $('#condition-search').val();
 
     //API CALL
-    getData(condition, function(response) {
+    getData(search, function(response) {
     //connection success
-      $('#output').append(`Successful API Connection. You did it! You searched for:  ${condition}. The search found ${response.data.length} results`);
-      let doctor1 = response.data[0].profile;
-      let doctor2 = response.data[1].profile;
-      // $('#output2').append(doctor1, doctor2);
-      let results = new Results(doctor1, doctor2);
-      console.log(results);
+      $('#output').append(`Successful API Connection. You did it! <br> You searched for:  ${search}. <br> The search found ${response.data.length} results`);
+      var i;
+      for (i = 0; i < response.data.length; i++){
+        let doctor = response.data[i];
+        $('#output2').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>");
+      }
+
     },
     //connection failure
       function() {
-      $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${condition} . Please try again.`);
+      $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${search} . Please try again.`);
     });
 
   });
