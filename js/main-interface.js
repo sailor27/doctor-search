@@ -1,5 +1,5 @@
 
-import { getData } from './../js/scripts.js';
+import { getData, Results } from './../js/scripts.js';
 
 $(document).ready(function() {
   $('#search').submit(function() {
@@ -10,11 +10,17 @@ $(document).ready(function() {
     getData(condition, function(response) {
     //connection success
       $('#output').append(`Successful API Connection. You did it! You searched for:  ${condition}. The search found ${response.data.length} results`);
-      const doctorArray = [ [response.data[0]], [response.data[1]] ];
-      console.log(doctorArray);
-      const doctor = response.data[0].profile.first_name;
-      console.log(doctor);
-      $('#output2').append("Doctor Profile: " + doctor);
+      const newResult = new Result(response.data);
+      console.log(newResult);
+
+      response.data.forEach(function(doctor){
+        var firstDoctor = response.data.pop();
+        console.log(firstDoctor);
+      });
+
+
+
+      // $('#output2').append(firstDoctor.profile.first_name);
     },
     //connection failure
       function() {
@@ -26,3 +32,9 @@ $(document).ready(function() {
 
   });
 });
+
+//for loop experiment to get doctor arrays out of fetched array
+        // for (i=0; i < response.data.length; i++){
+        //   let doctor = [i].pop();
+        //   console.log("doctor")
+        // }

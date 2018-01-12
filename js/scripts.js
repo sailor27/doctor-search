@@ -15,3 +15,10 @@ export function getData(condition, arg1, arg2){
     }
   });
 }
+
+export class Results {
+  constructor(doctors){
+
+  }
+
+}
