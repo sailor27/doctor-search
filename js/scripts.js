@@ -9,6 +9,10 @@ export function getData(condition, arg1, arg2){
     },
     success: function(response) {
       arg1(response);
+      console.log(response.data);
+      const newResults = new Results(response.data[0], response.data[1]);
+      console.log(newResults);
+
     },
     error: function(response) {
       arg2();
@@ -17,8 +21,15 @@ export function getData(condition, arg1, arg2){
 }
 
 export class Results {
-  constructor(doctors){
-
+  constructor(doctor1, doctor2){
+    this.doctor1 = [];
+    this.doctor2 = [];
   }
 
+}
+
+export class Doctor {
+  constructor(){
+
+  }
 }

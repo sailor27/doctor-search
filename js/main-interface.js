@@ -10,16 +10,6 @@ $(document).ready(function() {
     getData(condition, function(response) {
     //connection success
       $('#output').append(`Successful API Connection. You did it! You searched for:  ${condition}. The search found ${response.data.length} results`);
-      const newResult = new Result(response.data);
-      console.log(newResult);
-
-      response.data.forEach(function(doctor){
-        var firstDoctor = response.data.pop();
-        console.log(firstDoctor);
-      });
-
-
-
       // $('#output2').append(firstDoctor.profile.first_name);
     },
     //connection failure
@@ -27,6 +17,9 @@ $(document).ready(function() {
       $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${condition} . Please try again.`);
     });
     //
+    // console.log(getData());
+    // const newResults = new Results(response.data);
+    // console.log(newResult);
 
 
 
@@ -38,3 +31,9 @@ $(document).ready(function() {
         //   let doctor = [i].pop();
         //   console.log("doctor")
         // }
+
+//for each experiment to get first doctor from fetched array
+      // response.data.forEach(function(doctor){
+      //   var firstDoctor = response.data.pop();
+      //   console.log(firstDoctor);
+      // });
