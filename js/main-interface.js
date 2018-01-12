@@ -1,5 +1,5 @@
 
-import { getData } from './../js/scripts.js';
+import { getQuery, getByName} from './../js/scripts.js';
 
 $(document).ready(function() {
   $('#search').submit(function() {
@@ -7,7 +7,7 @@ $(document).ready(function() {
     let search = $('#condition-search').val();
 
     //API CALL
-    getData(search, function(response) {
+    getQuery(search, function(response) {
     //connection success
       $('#output').append(`Successful API Connection. You did it! <br> You searched for:  ${search}. <br> The search found ${response.data.length} results`);
       var i;
@@ -21,9 +21,31 @@ $(document).ready(function() {
       function() {
       $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${search} . Please try again.`);
     });
-
   });
-});
+//SEARCH BY NAME
+  $('#search2').submit(function() {
+    event.preventDefault();
+    let name = $('#name-search').val();
+    //API CALL
+    getByName(name, function(response) {
+      console.log("hi");
+    //connection success
+      $('#output3').append(`Successful API Connection. You did it! <br> You searched for:  ${name}. <br> The search found ${response.data.length} results`);
+      var i;
+      for (i = 0; i < response.data.length; i++){
+        let doctor = response.data[i];
+        $('#output4').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>");
+      }
+    },
+    //connection failure
+      function() {
+      $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${name} . Please try again.`);
+    });
+  });
+
+
+}); // end of document.ready
+
 
 //for loop experiment to get doctor arrays out of fetched array
         // for (i=0; i < response.data.length; i++){
