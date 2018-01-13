@@ -8,15 +8,29 @@
   </head>
   <body>
     <div class="container">
+      <div class="jumbotron">
+        <h1>Search for a Provider</h1>
+        <h4>Thanks for visiting our site. Search for a doctor in your area by your condition, or by the doctor's name.</h4>
+      </div>
       <form id="search">
-        <input id="condition-search"type="text" name="condition-search" value="" placeholder="Ex. sore throat">
-        <button type="submit" class= "btn btn-lg" name="button">Search</button>
+        <div class="form-group">
+          <label for="condition-search">Condition you are seeking treatment for.</label>
+          <input id="condition-search"type="text" name="condition-search" value="" placeholder="Ex. sore throat">
+          <!-- <small>Returns first 100 doctors with the search term in any field of their profile</small> -->
+          <button type="submit" class= "btn btn-lg" name="button">Search</button>
+        </div>
       </form>
       <form id="search2">
-        <input id="name-search"type="text" name="name-search" value="" placeholder="Ex. Jane Smith">
-        <button type="submit" class= "btn btn-lg" name="button">Search</button>
+        <div class="form-group">
+          <label for="name-search">Name of Doctor</label>
+          <input id="name-search"type="text" name="name-search" value="" placeholder="Ex. Jane Smith">
+          <!-- <small>Returns first 100 doctors with the first or last name provided</small> -->
+          <button type="submit" class= "btn btn-lg" name="button">Search</button>
+        </div>
       </form>
+
       <div class="results">
+        <div id="none"></div>
         <div id="output"></div>
         <div id="output1"></div>
         <div id="output2"></div>
