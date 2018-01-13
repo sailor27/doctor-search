@@ -1,5 +1,5 @@
 var apiKey = require('./../.env').apiKey;
-var searchLimit = 100;
+var searchLimit = 10;
 export function getQuery(search, arg1, arg2){
   $.ajax({
     url:`https://api.betterdoctor.com/2016-03-01/doctors?query=${search}&location=or-portland&skip=0&limit=${searchLimit}&user_key=${apiKey}`,

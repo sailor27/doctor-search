@@ -6,14 +6,17 @@ $(document).ready(function() {
     event.preventDefault();
     let search = $('#condition-search').val();
 
-    //API CALL
+    //API CALL FOR QUERY SEARCH
     getQuery(search, function(response) {
     //connection success
       $('#output').append(`Successful API Connection. You did it! <br> You searched for:  ${search}. <br> The search found ${response.data.length} results`);
-      var i;
+
+      let i;
       for (i = 0; i < response.data.length; i++){
         let doctor = response.data[i];
-        $('#output2').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>");
+        let address = doctor.practices[0].visit_address;
+        console.log(address);
+        $('#output2').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>" + "<li>" + address.city + ", " + "address.state"+ "</li>");
       }
 
     },
@@ -22,11 +25,10 @@ $(document).ready(function() {
       $('#output1').text(`NO API CONNECTION. There was an error processing your search for ${search} . Please try again.`);
     });
   });
-//SEARCH BY NAME
   $('#search2').submit(function() {
     event.preventDefault();
     let name = $('#name-search').val();
-    //API CALL
+    //API CALL FOR NAME SEARCH
     getByName(name, function(response) {
       console.log("hi");
     //connection success
