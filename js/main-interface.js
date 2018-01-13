@@ -16,7 +16,7 @@ $(document).ready(function() {
         let doctor = response.data[i];
         let address = doctor.practices[0].visit_address;
         console.log(address);
-        $('#output2').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>" + "<li>" + address.city + ", " + "address.state"+ "</li>");
+        $('#output2').append("<h5>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</h5>" + "<ul>" + "<li>" + address.street + "</li>" + "<li>" + address.city + ", " + address.state + ", " + address.zip + "</li>" + "</ul>");
       }
 
     },
@@ -30,13 +30,14 @@ $(document).ready(function() {
     let name = $('#name-search').val();
     //API CALL FOR NAME SEARCH
     getByName(name, function(response) {
-      console.log("hi");
+
     //connection success
       $('#output3').append(`Successful API Connection. You did it! <br> You searched for:  ${name}. <br> The search found ${response.data.length} results`);
       var i;
       for (i = 0; i < response.data.length; i++){
         let doctor = response.data[i];
-        $('#output4').append("<li>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</li>");
+        let address = doctor.practices[0].visit_address;
+        $('#output4').append("<h5>" + doctor.profile.first_name + " " + doctor.profile.last_name + "</h5>" + "<ul>" + "<li>" + address.street + "</li>" + "<li>" + address.city + ", " + address.state + ", " + address.zip + "</li>" + "</ul>");
       }
     },
     //connection failure
